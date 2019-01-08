@@ -11,7 +11,7 @@ def write_file(file_name: str, rewrite):
         json.dump(rewrite, file, indent=4)
 
 
-def pickle_load(file_name: str) -> dict:
+def pickle_load(file_name: str) -> list:
     with open(file_name, 'rb') as file:
         return pickle.load(file)
 

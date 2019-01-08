@@ -1,29 +1,33 @@
 import tkinter as tk
 import utilities as util
-
+import calculate as calc
 
 '''TO DO
+more info button
+ALL info button
+chances to win game (display math that goes with it. ie: % for map, % w/ teammates)
 error messages in check()
 try and catch block to catch common errors
 save and load data
-stats
+
 '''
 
-
 class MatchData:
-    def __init__(self, map_name: str, teammates: [str], randoms: int, rwon: int, rlost: int, gwin: bool, kills: int, deaths: int, assists: int):
+    def __init__(self, map_name: str, teammates: [str], randoms: int, rwon: int, rlost: int, gwon: bool, kills: int, deaths: int, assists: int):
         self.map_name = map_name
         self.teammates = teammates
         self.randoms = randoms
         self.rwon = rwon
         self.rlost = rlost
-        self.gwin = gwin
+        self.gwon = gwon
         self.kills = kills
         self.deaths = deaths
         self.assists = assists
 
 
+FILE_NAME = 'match_data.json'
 matches = [] # list of MatchData objects
+# matches = util.pickle_load(FILE_NAME)
 
 
 def submit():
@@ -36,26 +40,18 @@ def submit():
     randoms = 4 - len(teammates)
     rwon = rounds_won.get()
     rlost = rounds_lost.get()
-    gwin = win.get()
+    gwon = win.get()
     k = kills.get()
     d = deaths.get()
     a = assists.get()
 
-    if check(map_name, teammates, randoms, rwon, rlost, gwin, k, d, a):
-        matches.append(MatchData(map_name, teammates, randoms, rwon, rlost, gwin, k, d, a))
+    if check(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a):
+        matches.append(MatchData(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a))
+        util.pickle_write(FILE_NAME, matches)
         cleanup()
-        print(matches[0].map_name)
-        print(matches[0].teammates)
-        print(matches[0].randoms)
-        print(matches[0].rwon)
-        print(matches[0].rlost)
-        print(matches[0].gwin)
-        print(matches[0].kills)
-        print(matches[0].deaths)
-        print(matches[0].assists)
 
 
-def check(map_name, teammates, randoms, rwon, rlost, gwin, k, d, a):
+def check(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a):
     if len(teammates) > 4:
         return False
     if randoms > 4:
@@ -77,8 +73,8 @@ def cleanup():
     rlost4.deselect()
     rlost5.deselect()
 
-    gwin_yes.deselect()
-    gwin_no.deselect()
+    gwon_yes.deselect()
+    gwon_no.deselect()
 
     kills_entry.delete(0, 'end')
     deaths_entry.delete(0, 'end')
@@ -162,11 +158,11 @@ rlost4 = tk.Radiobutton(rlost_frame, text='4', variable=rounds_lost, value=4)
 rlost5 = tk.Radiobutton(rlost_frame, text='5', variable=rounds_lost, value=5)
 
 # W/L?
-gwin_frame = tk.Frame(main_window)
-gwin_label = tk.Label(gwin_frame, text='Overall Win or Loss?')
+gwon_frame = tk.Frame(main_window)
+gwon_label = tk.Label(gwon_frame, text='Overall Win or Loss?')
 win = tk.BooleanVar()
-gwin_yes = tk.Radiobutton(gwin_frame, text='win', variable=win, value=True)
-gwin_no = tk.Radiobutton(gwin_frame, text='loss', variable=win, value=False)
+gwon_yes = tk.Radiobutton(gwon_frame, text='win', variable=win, value=True)
+gwon_no = tk.Radiobutton(gwon_frame, text='loss', variable=win, value=False)
 
 # KDA
 kills_frame = tk.Frame(main_window)
@@ -194,7 +190,7 @@ map_frame.pack()
 teammate_frame.pack()
 rwon_frame.pack()
 rlost_frame.pack()
-gwin_frame.pack()
+gwon_frame.pack()
 kills_frame.pack()
 deaths_frame.pack()
 assists_frame.pack()
@@ -227,9 +223,9 @@ rlost3.pack(side='left')
 rlost4.pack(side='left')
 rlost5.pack(side='left')
 
-gwin_label.pack(side='left')
-gwin_yes.pack(side='left')
-gwin_no.pack(side='left')
+gwon_label.pack(side='left')
+gwon_yes.pack(side='left')
+gwon_no.pack(side='left')
 
 kills_label.pack(side='left')
 kills_entry.pack(side='left')
