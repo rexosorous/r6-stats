@@ -8,8 +8,7 @@ ALL info button
 chances to win game (display math that goes with it. ie: % for map, % w/ teammates)
 error messages in check()
 try and catch block to catch common errors
-save and load data
-
+close button which saves all data
 '''
 
 class MatchData:
