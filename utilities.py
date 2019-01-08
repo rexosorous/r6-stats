@@ -1,12 +1,9 @@
 import json
 import os
-import requests
 import pickle
 from random import randint
 from time import sleep
 
-everyone = ['everybody', 'everyone', 'all']
-admins = ['gay_zach', 'hwangbroxd']
 
 def load_file(file_name: str) -> dict:
     with open(file_name) as file:
@@ -45,17 +42,6 @@ def load_blacklist() -> dict:
 def write_blacklist(rewrite: dict):
     with open('json/blacklist.json', 'w') as file:
         json.dump(rewrite, file, indent=4)
-
-
-def get_viewers() -> [str]:
-    url = r'https://tmi.twitch.tv/group/user/gay_zach/chatters'
-    names = requests.get(url).json()
-
-    # avoid getting timed out
-    sleep(0.1)
-
-    # formatted string
-    return names['chatters']['viewers'] + names['chatters']['moderators']
     
 
 def rng(min_value: int, max_value: int) -> int:

@@ -2,10 +2,67 @@ import tkinter as tk
 import utilities as util
 
 
-def submit():
-    map_listbox.curselection()
-    cleanup()
+'''TO DO
+error messages in check()
+try and catch block to catch common errors
+save and load data
+stats
+'''
 
+
+class MatchData:
+    def __init__(self, map_name: str, teammates: [str], randoms: int, rwon: int, rlost: int, gwin: bool, kills: int, deaths: int, assists: int):
+        self.map_name = map_name
+        self.teammates = teammates
+        self.randoms = randoms
+        self.rwon = rwon
+        self.rlost = rlost
+        self.gwin = gwin
+        self.kills = kills
+        self.deaths = deaths
+        self.assists = assists
+
+
+matches = [] # list of MatchData objects
+
+
+def submit():
+    # saves all data into a MatchData object
+    map_name = map_listbox.get(map_listbox.curselection())
+    teammates = []
+    for teammate in team_dict: # adds all teammates to the teammate dict
+        if team_dict[teammate].get():
+            teammates.append(teammate)
+    randoms = 4 - len(teammates)
+    rwon = rounds_won.get()
+    rlost = rounds_lost.get()
+    gwin = win.get()
+    k = kills.get()
+    d = deaths.get()
+    a = assists.get()
+
+    if check(map_name, teammates, randoms, rwon, rlost, gwin, k, d, a):
+        matches.append(MatchData(map_name, teammates, randoms, rwon, rlost, gwin, k, d, a))
+        cleanup()
+        print(matches[0].map_name)
+        print(matches[0].teammates)
+        print(matches[0].randoms)
+        print(matches[0].rwon)
+        print(matches[0].rlost)
+        print(matches[0].gwin)
+        print(matches[0].kills)
+        print(matches[0].deaths)
+        print(matches[0].assists)
+
+
+def check(map_name, teammates, randoms, rwon, rlost, gwin, k, d, a):
+    if len(teammates) > 4:
+        return False
+    if randoms > 4:
+        return False
+    if rwon == rlost:
+        return False
+    return True
 
 def cleanup():
     rwon1.deselect()
@@ -29,6 +86,17 @@ def cleanup():
 
 
 
+
+
+
+
+
+
+############################################################################
+############################## GUI #########################################
+############################################################################
+
+
 # window
 main_window = tk.Tk()
 
@@ -50,26 +118,28 @@ map_listbox.insert(11, 'Skyscraper')
 map_listbox.insert(12, 'Theme Park')
 
 # teammate variables
-arnold = tk.BooleanVar()
-benji = tk.BooleanVar()
-charles = tk.BooleanVar()
-josh = tk.BooleanVar()
-juan = tk.BooleanVar()
-lloyd = tk.BooleanVar()
-lu = tk.BooleanVar()
-victor = tk.BooleanVar()
+team_dict = {
+    'arnold': tk.BooleanVar(),
+    'benji': tk.BooleanVar(),
+    'charles': tk.BooleanVar(),
+    'josh': tk.BooleanVar(),
+    'juan': tk.BooleanVar(),
+    'lloyd': tk.BooleanVar(),
+    'lu': tk.BooleanVar(),
+    'victor': tk.BooleanVar()
+}
 
 # teammate checkbuttons
 teammate_frame = tk.Frame(main_window)
 teammate_label = tk.Label(teammate_frame, text='Teammates:')
-arnold_checkbutton = tk.Checkbutton(teammate_frame, text='arnold', variable=arnold, onvalue=True, offvalue=False)
-benji_checkbutton = tk.Checkbutton(teammate_frame, text='benji', variable=benji, onvalue=True, offvalue=False)
-charles_checkbutton = tk.Checkbutton(teammate_frame, text='charles', variable=charles, onvalue=True, offvalue=False)
-josh_checkbutton = tk.Checkbutton(teammate_frame, text='josh', variable=josh, onvalue=True, offvalue=False)
-juan_checkbutton = tk.Checkbutton(teammate_frame, text='juan', variable=juan, onvalue=True, offvalue=False)
-lloyd_checkbutton = tk.Checkbutton(teammate_frame, text='lloyd', variable=lloyd, onvalue=True, offvalue=False)
-lu_checkbutton = tk.Checkbutton(teammate_frame, text='lu', variable=lu, onvalue=True, offvalue=False)
-victor_checkbutton = tk.Checkbutton(teammate_frame, text='victor', variable=victor, onvalue=True, offvalue=False)
+arnold_checkbutton = tk.Checkbutton(teammate_frame, text='arnold', variable=team_dict['arnold'], onvalue=True, offvalue=False)
+benji_checkbutton = tk.Checkbutton(teammate_frame, text='benji', variable=team_dict['benji'], onvalue=True, offvalue=False)
+charles_checkbutton = tk.Checkbutton(teammate_frame, text='charles', variable=team_dict['charles'], onvalue=True, offvalue=False)
+josh_checkbutton = tk.Checkbutton(teammate_frame, text='josh', variable=team_dict['josh'], onvalue=True, offvalue=False)
+juan_checkbutton = tk.Checkbutton(teammate_frame, text='juan', variable=team_dict['juan'], onvalue=True, offvalue=False)
+lloyd_checkbutton = tk.Checkbutton(teammate_frame, text='lloyd', variable=team_dict['lloyd'], onvalue=True, offvalue=False)
+lu_checkbutton = tk.Checkbutton(teammate_frame, text='lu', variable=team_dict['lu'], onvalue=True, offvalue=False)
+victor_checkbutton = tk.Checkbutton(teammate_frame, text='victor', variable=team_dict['victor'], onvalue=True, offvalue=False)
 
 # rounds won
 rwon_frame = tk.Frame(main_window)
@@ -95,8 +165,8 @@ rlost5 = tk.Radiobutton(rlost_frame, text='5', variable=rounds_lost, value=5)
 gwin_frame = tk.Frame(main_window)
 gwin_label = tk.Label(gwin_frame, text='Overall Win or Loss?')
 win = tk.BooleanVar()
-gwin_yes = tk.Radiobutton(gwin_frame, text='yes', variable=win, value=True)
-gwin_no = tk.Radiobutton(gwin_frame, text='no', variable=win, value=False)
+gwin_yes = tk.Radiobutton(gwin_frame, text='win', variable=win, value=True)
+gwin_no = tk.Radiobutton(gwin_frame, text='loss', variable=win, value=False)
 
 # KDA
 kills_frame = tk.Frame(main_window)
