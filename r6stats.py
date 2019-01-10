@@ -7,10 +7,18 @@ import calculate as calc
 more info button
 ALL info button
 chances to win game (display math that goes with it. ie: % for map, % w/ teammates)
-error messages in check()
-try and catch block to catch common errors
 close button which saves all data
 '''
+
+
+
+# custom exceptions
+class TeammateError(Exception):
+    print ('ERROR: too many teammates')
+class RoundError(Exception):
+    print ('ERROR: round W/L results impossible')
+class KDAError(Exception):
+    print ('ERROR: negative KDA')
 
 
 
@@ -26,31 +34,37 @@ def submit():
             teammates.append(teammate)
 
     match_dict = {
-        'map_name': map_listbox.get(map_listbox.curselection())
-        'teammates': teammates
-        'randoms': 4 - len(teammates)
-        'rwon': rounds_won.get()
-        'rlost': rounds_lost.get()
-        'gwon': win.get()
-        'k': kills.get()
-        'd': deaths.get()
-        'a': assists.get()
+        'map_name': map_listbox.get(map_listbox.curselection()) # string
+        'teammates': teammates # [string]
+        'randoms': 4 - len(teammates) # int
+        'rwon': rounds_won.get() # int
+        'rlost': rounds_lost.get() # int
+        'gwon': win.get() # bool
+        'k': kills.get() # int
+        'd': deaths.get() # int
+        'a': assists.get() # int
     }
 
-    if check(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a):
-        matches.append(match_dict)
-        util.write_file(FILE_NAME, matches)
-        cleanup()
+    try:
+        if check(match_dict):
+            matches.append(match_dict)
+            util.write_file(FILE_NAME, matches)
+            cleanup()
+    except:
+        pass
 
 
-def check(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a):
-    if len(teammates) > 4:
-        return False
-    if randoms > 4:
-        return False
-    if rwon == rlost:
-        return False
+def check(match_dict) -> bool:    
+    if len(match_dict['teammates']) > 4:
+        raise TeammateError
+    if match_dict['randoms'] > 4:
+        raise TeammateError
+    if match_dict['rwon'] == match_dict['rlost']:
+        raise RoundError
+    if match_dict['k'] < 0 or match_dict['d'] < 0 or match_dict['a'] < 0:
+        raise KDAError
     return True
+
 
 def cleanup():
     rwon1.deselect()
