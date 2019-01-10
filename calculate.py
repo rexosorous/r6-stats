@@ -76,23 +76,23 @@ def init(matches: [object]):
     }
 
     for match in matches:
-        if matches[match].gwon:
-            map_dict[matches[match].map_name].gwon += 1
+        if match['gwon']:
+            map_dict[match['map_name']].gwon += 1
         else:
-            map_dict[matches[match].map_name].glost += 1
-        map_dict[matches[match].map_name].rwon += matches[match].rwon
-        map_dict[matches[match].map_name].rlost += matches[match].rlost
-        if matches[match].randoms > 0: # FIX THIS CONDITIONAL
-                if matches[match].gwon:
-                    map_dict[matches[match].map_name].gwon_random += 1
+            map_dict[match['map_name']].glost += 1
+        map_dict[match['map_name']].rwon += match['rwon']
+        map_dict[match['map_name']].rlost += match['rlost']
+        if match['randoms'] > 0: # FIX THIS CONDITIONAL
+                if match['gwon']:
+                    map_dict[match['map_name']].gwon_random += 1
                 else:
-                    map_dict[matches[match].map_name].glost_random += 1
-                map_dict[matches[match].map_name].rwon_random += matches[match].rwon_random
-                map_dict[matches[match].map_name].rlost_random += matches[match].rlost_random
-        map_dict[matches[match].map_name].total_games += 1
-        map_dict[matches[match].map_name].kills += matches[match].kills
-        map_dict[matches[match].map_name].deaths += matches[match].deaths
-        map_dict[matches[match].map_name].assists += matches[match].assists
+                    map_dict[match['map_name']].glost_random += 1
+                map_dict[match['map_name']].rwon_random += match['rwon_random']
+                map_dict[match['map_name']].rlost_random += match['rlost_random']
+        map_dict[match['map_name']].total_games += 1
+        map_dict[match['map_name']].kills += match['kills']
+        map_dict[match['map_name']].deaths += match['deaths']
+        map_dict[match['map_name']].assists += match['assists']
 
 
 
@@ -118,13 +118,13 @@ def init(matches: [object]):
     }
 
     for match in matches:
-        for tmate in matches[match].teammates:
-            if matches[match].gwon:
+        for tmate in match['teammates']:
+            if match['gwon']:
                 teammate_dict[tmate].gwon += 1
             else:
                 teammate_dict[tmate].glost += 1
-            teammate_dict[tmate].rwon += matches[match].rwon
-            teammate_dict[tmate].rlost += matches[match].rlost
+            teammate_dict[tmate].rwon += match['rwon']
+            teammate_dict[tmate].rlost += match['rlost']
             teammate_dict[tmate].total_games += 1
 
 
@@ -146,13 +146,13 @@ def init(matches: [object]):
     }
 
     for match in matches:
-        if matches[match].gwin:
-            randoms_dict[matches[match].randoms].gwon += 1
+        if match['gwin']:
+            randoms_dict[match['randoms']].gwon += 1
         else:
-            randoms_dict[matches[match].randoms].glost += 1
-        randoms_dict[matches[match].randoms].rwon += matches[match].rwon
-        randoms_dict[matches[match].randoms].rlost += matches[match].rlost
-        randoms_dict[matches[match].randoms].total_games += 1
+            randoms_dict[match['randoms']].glost += 1
+        randoms_dict[match['randoms']].rwon += match['rwon']
+        randoms_dict[match['randoms']].rlost += match['rlost']
+        randoms_dict[match['randoms']].total_games += 1
 
 
 
@@ -169,16 +169,16 @@ def init(matches: [object]):
     }
 
     for match in matches:
-        if matches[match].gwin:
+        if match['gwin']:
             overall_dict['gwon'] += 1
         else:
             overall_dict['glost'] += 1
-        overall_dict['rwon'] += matches[match].rwon
-        overall_dict['rlost'] += matches[match].rlost
+        overall_dict['rwon'] += match['rwon']
+        overall_dict['rlost'] += match['rlost']
         overall_dict['total_games'] += 1
-        overall_dict['kills'] += matches[match].kills
-        overall_dict['deaths'] += matches[match].deaths
-        overall_dict['assists'] += matches[match].assists
+        overall_dict['kills'] += match['kills']
+        overall_dict['deaths'] += match['deaths']
+        overall_dict['assists'] += match['assists']
 
 
 
