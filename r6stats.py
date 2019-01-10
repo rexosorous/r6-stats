@@ -2,6 +2,14 @@ import tkinter as tk
 import utilities as util
 import calculate as calc
 
+
+'''IMPORTANT
+add new maps
+add 0 wins / 0 losses
+
+'''
+
+
 '''TO DO
 more info button
 ALL info button
@@ -111,6 +119,8 @@ map_listbox.insert(9, 'Kafe Dostoyevsky')
 map_listbox.insert(10, 'Oregon')
 map_listbox.insert(11, 'Skyscraper')
 map_listbox.insert(12, 'Theme Park')
+map_listbox.insert(13, 'Villa')
+map_listbox.insert(14, 'Fortress')
 
 # teammate variables
 team_dict = {
@@ -140,6 +150,7 @@ victor_checkbutton = tk.Checkbutton(teammate_frame, text='victor', variable=team
 rwon_frame = tk.Frame(main_window)
 rwon_label = tk.Label(rwon_frame, text='Rounds Won?')
 rounds_won = tk.IntVar()
+rwon0 = tk.Radiobutton(rwon_frame, text='0', variable=rounds_won, value=0)
 rwon1 = tk.Radiobutton(rwon_frame, text='1', variable=rounds_won, value=1)
 rwon2 = tk.Radiobutton(rwon_frame, text='2', variable=rounds_won, value=2)
 rwon3 = tk.Radiobutton(rwon_frame, text='3', variable=rounds_won, value=3)
@@ -150,6 +161,7 @@ rwon5 = tk.Radiobutton(rwon_frame, text='5', variable=rounds_won, value=5)
 rlost_frame = tk.Frame(main_window)
 rlost_label = tk.Label(rlost_frame, text='Rounds Lost?')
 rounds_lost = tk.IntVar()
+rlost0 = tk.Radiobutton(rlost_frame, text='0', variable=rounds_lost, value=0)
 rlost1 = tk.Radiobutton(rlost_frame, text='1', variable=rounds_lost, value=1)
 rlost2 = tk.Radiobutton(rlost_frame, text='2', variable=rounds_lost, value=2)
 rlost3 = tk.Radiobutton(rlost_frame, text='3', variable=rounds_lost, value=3)
