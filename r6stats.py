@@ -207,6 +207,7 @@ victor_checkbutton.pack(side='left')
 submit_button.pack(side='left')
 
 rwon_label.pack(side='left')
+rwon0.pack(side='left')
 rwon1.pack(side='left')
 rwon2.pack(side='left')
 rwon3.pack(side='left')
@@ -214,6 +215,7 @@ rwon4.pack(side='left')
 rwon5.pack(side='left')
 
 rlost_label.pack(side='left')
+rlost0.pack(side='left')
 rlost1.pack(side='left')
 rlost2.pack(side='left')
 rlost3.pack(side='left')
@@ -226,10 +228,10 @@ gwon_no.pack(side='left')
 
 kills_label.pack(side='left')
 kills_entry.pack(side='left')
-deaths_label.pack(side='left')
-deaths_entry.pack(side='left')
 assists_label.pack(side='left')
 assists_entry.pack(side='left')
+deaths_label.pack(side='left')
+deaths_entry.pack(side='left')
 
 submit_button.pack(side='bottom')
 
