@@ -1,5 +1,6 @@
 import json
 import pickle
+from os import path
 
 def load_file(file_name: str) -> dict:
     with open(file_name) as file:
@@ -19,3 +20,7 @@ def pickle_load(file_name: str) -> list:
 def pickle_write(file_name: str, rewrite):
     with open(file_name, 'wb') as file:
         pickle.dump(rewrite, file)
+
+
+def file_exists(file_name: str) -> bool:
+    return path.exists(file_name)

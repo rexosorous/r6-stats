@@ -14,9 +14,8 @@ close button which saves all data
 
 
 
-FILE_NAME = 'match_data.json'
-matches = [] # list of MatchData objects
-# matches = util.pickle_load(FILE_NAME)
+FILE_NAME = 'raw_data.json'
+matches = util.load_file(FILE_NAME) if util.file_exists(FILE_NAME) else []
 
 
 def submit():
