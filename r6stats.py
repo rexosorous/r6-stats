@@ -3,13 +3,6 @@ import utilities as util
 import calculate as calc
 
 
-'''IMPORTANT
-add new maps
-add 0 wins / 0 losses
-
-'''
-
-
 '''TO DO
 more info button
 ALL info button
