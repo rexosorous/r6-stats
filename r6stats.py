@@ -12,17 +12,6 @@ try and catch block to catch common errors
 close button which saves all data
 '''
 
-class MatchData:
-    def __init__(self, map_name: str, teammates: [str], randoms: int, rwon: int, rlost: int, gwon: bool, kills: int, deaths: int, assists: int):
-        self.map_name = map_name
-        self.teammates = teammates
-        self.randoms = randoms
-        self.rwon = rwon
-        self.rlost = rlost
-        self.gwon = gwon
-        self.kills = kills
-        self.deaths = deaths
-        self.assists = assists
 
 
 FILE_NAME = 'match_data.json'
@@ -32,22 +21,26 @@ matches = [] # list of MatchData objects
 
 def submit():
     # saves all data into a MatchData object
-    map_name = map_listbox.get(map_listbox.curselection())
     teammates = []
     for teammate in team_dict: # adds all teammates to the teammate dict
         if team_dict[teammate].get():
             teammates.append(teammate)
-    randoms = 4 - len(teammates)
-    rwon = rounds_won.get()
-    rlost = rounds_lost.get()
-    gwon = win.get()
-    k = kills.get()
-    d = deaths.get()
-    a = assists.get()
+
+    match_dict = {
+        'map_name': map_listbox.get(map_listbox.curselection())
+        'teammates': teammates
+        'randoms': 4 - len(teammates)
+        'rwon': rounds_won.get()
+        'rlost': rounds_lost.get()
+        'gwon': win.get()
+        'k': kills.get()
+        'd': deaths.get()
+        'a': assists.get()
+    }
 
     if check(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a):
-        matches.append(MatchData(map_name, teammates, randoms, rwon, rlost, gwon, k, d, a))
-        util.pickle_write(FILE_NAME, matches)
+        matches.append(match_dict)
+        util.write_file(FILE_NAME, matches)
         cleanup()
 
 
