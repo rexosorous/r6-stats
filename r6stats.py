@@ -33,13 +33,17 @@ def submit():
         if team_dict[teammate].get():
             teammates.append(teammate)
 
+    gwon = False
+    if rounds_won.get() == 5 or rounds_won.get() >= rounds_lost.get() + 2:
+        gwon = True
+
     match_dict = {
         'map_name': map_listbox.get(map_listbox.curselection()) # string
         'teammates': teammates # [string]
         'randoms': 4 - len(teammates) # int
         'rwon': rounds_won.get() # int
         'rlost': rounds_lost.get() # int
-        'gwon': win.get() # bool
+        'gwon': gwon # bool
         'k': kills.get() # int
         'd': deaths.get() # int
         'a': assists.get() # int
@@ -167,13 +171,6 @@ rlost3 = tk.Radiobutton(rlost_frame, text='3', variable=rounds_lost, value=3)
 rlost4 = tk.Radiobutton(rlost_frame, text='4', variable=rounds_lost, value=4)
 rlost5 = tk.Radiobutton(rlost_frame, text='5', variable=rounds_lost, value=5)
 
-# W/L?
-gwon_frame = tk.Frame(main_window)
-gwon_label = tk.Label(gwon_frame, text='Overall Win or Loss?')
-win = tk.BooleanVar()
-gwon_yes = tk.Radiobutton(gwon_frame, text='win', variable=win, value=True)
-gwon_no = tk.Radiobutton(gwon_frame, text='loss', variable=win, value=False)
-
 # KDA
 kills_frame = tk.Frame(main_window)
 kills_label = tk.Label(kills_frame, text='kills:')
@@ -234,10 +231,6 @@ rlost2.pack(side='left')
 rlost3.pack(side='left')
 rlost4.pack(side='left')
 rlost5.pack(side='left')
-
-gwon_label.pack(side='left')
-gwon_yes.pack(side='left')
-gwon_no.pack(side='left')
 
 kills_label.pack(side='left')
 kills_entry.pack(side='left')
