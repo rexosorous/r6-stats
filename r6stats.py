@@ -1,4 +1,5 @@
 import tkinter as tk
+from datetime import datetime
 import utilities as util
 import calculate as calc
 
@@ -38,6 +39,7 @@ def submit():
         gwon = True
 
     match_dict = {
+        'date:' datetime.datetime.today().strftime('%m-%d-%Y') # string
         'map_name': map_listbox.get(map_listbox.curselection()) # string
         'teammates': teammates # [string]
         'randoms': 4 - len(teammates) # int
