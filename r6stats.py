@@ -15,11 +15,14 @@ close button which saves all data
 
 # custom exceptions
 class TeammateError(Exception):
-    print ('ERROR: too many teammates')
+    pass
+    # print ('ERROR: too many teammates')
 class RoundError(Exception):
-    print ('ERROR: round W/L results impossible')
+    pass
+    # print ('ERROR: round W/L results impossible')
 class KDAError(Exception):
-    print ('ERROR: negative KDA')
+    pass
+    # print ('ERROR: negative KDA')
 
 
 
@@ -48,7 +51,7 @@ def submit():
         'gwon': gwon, # bool
         'k': kills.get(), # int
         'd': deaths.get(), # int
-        'a': assists.get(), # int
+        'a': assists.get() # int
     }
 
     try:
@@ -56,8 +59,12 @@ def submit():
             matches.append(match_dict)
             util.write_file(FILE_NAME, matches)
             cleanup()
-    except:
-        pass
+    except TeammateError:
+        print('teammate error')
+    except RoundError:
+        print('round error')
+    except KDAError:
+        print('KDA error')
 
 
 def check(match_dict) -> bool:    
@@ -84,9 +91,6 @@ def cleanup():
     rlost3.deselect()
     rlost4.deselect()
     rlost5.deselect()
-
-    gwon_yes.deselect()
-    gwon_no.deselect()
 
     kills_entry.delete(0, 'end')
     deaths_entry.delete(0, 'end')
@@ -176,17 +180,17 @@ rlost5 = tk.Radiobutton(rlost_frame, text='5', variable=rounds_lost, value=5)
 # KDA
 kills_frame = tk.Frame(main_window)
 kills_label = tk.Label(kills_frame, text='kills:')
-kills = tk.StringVar()
+kills = tk.IntVar()
 kills_entry = tk.Entry(kills_frame, textvariable=kills)
 
 deaths_frame = tk.Frame(main_window)
 deaths_label = tk.Label(deaths_frame, text='deaths:')
-deaths = tk.StringVar()
+deaths = tk.IntVar()
 deaths_entry = tk.Entry(deaths_frame, textvariable=deaths)
 
 assists_frame = tk.Frame(main_window)
 assists_label = tk.Label(assists_frame, text='assists:')
-assists = tk.StringVar()
+assists = tk.IntVar()
 assists_entry = tk.Entry(assists_frame, textvariable=assists)
 
 # submit button
