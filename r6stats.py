@@ -39,16 +39,16 @@ def submit():
         gwon = True
 
     match_dict = {
-        'date:' datetime.datetime.today().strftime('%m-%d-%Y') # string
-        'map_name': map_listbox.get(map_listbox.curselection()) # string
-        'teammates': teammates # [string]
-        'randoms': 4 - len(teammates) # int
-        'rwon': rounds_won.get() # int
-        'rlost': rounds_lost.get() # int
-        'gwon': gwon # bool
-        'k': kills.get() # int
-        'd': deaths.get() # int
-        'a': assists.get() # int
+        'date': datetime.today().strftime('%m-%d-%Y'), # string
+        'map_name': map_listbox.get(map_listbox.curselection()), # string
+        'teammates': teammates, # [string]
+        'randoms': 4 - len(teammates), # int
+        'rwon': rounds_won.get(), # int
+        'rlost': rounds_lost.get(), # int
+        'gwon': gwon, # bool
+        'k': kills.get(), # int
+        'd': deaths.get(), # int
+        'a': assists.get(), # int
     }
 
     try:
@@ -199,7 +199,6 @@ map_frame.pack()
 teammate_frame.pack()
 rwon_frame.pack()
 rlost_frame.pack()
-gwon_frame.pack()
 kills_frame.pack()
 deaths_frame.pack()
 assists_frame.pack()
