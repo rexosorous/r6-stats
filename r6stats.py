@@ -183,15 +183,16 @@ kills_label = tk.Label(kills_frame, text='kills:')
 kills = tk.IntVar()
 kills_entry = tk.Entry(kills_frame, textvariable=kills)
 
+assists_frame = tk.Frame(main_window)
+assists_label = tk.Label(assists_frame, text='assists:')
+assists = tk.IntVar()
+assists_entry = tk.Entry(assists_frame, textvariable=assists)
+
 deaths_frame = tk.Frame(main_window)
 deaths_label = tk.Label(deaths_frame, text='deaths:')
 deaths = tk.IntVar()
 deaths_entry = tk.Entry(deaths_frame, textvariable=deaths)
 
-assists_frame = tk.Frame(main_window)
-assists_label = tk.Label(assists_frame, text='assists:')
-assists = tk.IntVar()
-assists_entry = tk.Entry(assists_frame, textvariable=assists)
 
 # submit button
 submit_button = tk.Button(main_window, text='Submit', command=submit)
@@ -204,8 +205,8 @@ teammate_frame.pack()
 rwon_frame.pack()
 rlost_frame.pack()
 kills_frame.pack()
-deaths_frame.pack()
 assists_frame.pack()
+deaths_frame.pack()
 
 map_label.pack()
 map_listbox.pack()

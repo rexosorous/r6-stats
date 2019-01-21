@@ -1,0 +1,83 @@
+[
+    {
+        "date": "01-16-2019",
+        "map_name": "Villa",
+        "teammates": [
+            "arnold",
+            "charles",
+            "juan",
+            "victor"
+        ],
+        "randoms": 0,
+        "rwon": 3,
+        "rlost": 5,
+        "gwon": false,
+        "k": 2,
+        "d": 8,
+        "a": 0
+    },
+    {
+        "date": "01-20-2019",
+        "map_name": "Coastline",
+        "teammates": [
+            "arnold",
+            "charles",
+            "victor"
+        ],
+        "randoms": 1,
+        "rwon": 5,
+        "rlost": 3,
+        "gwon": true,
+        "k": 1,
+        "d": 7,
+        "a": 1
+    },
+    {
+        "date": "01-20-2019",
+        "map_name": "Border",
+        "teammates": [
+            "arnold",
+            "charles",
+            "victor"
+        ],
+        "randoms": 1,
+        "rwon": 3,
+        "rlost": 5,
+        "gwon": false,
+        "k": 1,
+        "d": 8,
+        "a": 2
+    },
+    {
+        "date": "01-20-2019",
+        "map_name": "Villa",
+        "teammates": [
+            "arnold",
+            "charles",
+            "victor"
+        ],
+        "randoms": 1,
+        "rwon": 5,
+        "rlost": 4,
+        "gwon": true,
+        "k": 2,
+        "d": 7,
+        "a": 3
+    },
+    {
+        "date": "01-20-2019",
+        "map_name": "Fortress",
+        "teammates": [
+            "arnold",
+            "charles",
+            "victor"
+        ],
+        "randoms": 1,
+        "rwon": 4,
+        "rlost": 1,
+        "gwon": true,
+        "k": 3,
+        "d": 5,
+        "a": 1
+    }
+]
