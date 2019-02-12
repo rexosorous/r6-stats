@@ -11,7 +11,7 @@
         "randoms": 0,
         "rwon": 3,
         "rlost": 5,
-        "gwon": "false",
+        "gwon": false,
         "k": 2,
         "d": 8,
         "a": 0
@@ -22,13 +22,12 @@
         "teammates": [
             "arnold",
             "charles",
-            "victor",
-            "random"
+            "victor"
         ],
         "randoms": 1,
         "rwon": 5,
         "rlost": 3,
-        "gwon": "true",
+        "gwon": true,
         "k": 1,
         "d": 7,
         "a": 1
@@ -39,13 +38,12 @@
         "teammates": [
             "arnold",
             "charles",
-            "victor",
-            "random"
+            "victor"
         ],
         "randoms": 1,
         "rwon": 3,
         "rlost": 5,
-        "gwon": "false",
+        "gwon": false,
         "k": 1,
         "d": 8,
         "a": 2
@@ -56,13 +54,12 @@
         "teammates": [
             "arnold",
             "charles",
-            "victor",
-            "random"
+            "victor"
         ],
         "randoms": 1,
         "rwon": 5,
         "rlost": 4,
-        "gwon": "true",
+        "gwon": true,
         "k": 2,
         "d": 7,
         "a": 3
@@ -73,13 +70,12 @@
         "teammates": [
             "arnold",
             "charles",
-            "victor",
-            "random"
+            "victor"
         ],
         "randoms": 1,
         "rwon": 4,
         "rlost": 1,
-        "gwon": "true",
+        "gwon": true,
         "k": 3,
         "d": 5,
         "a": 1
@@ -89,14 +85,12 @@
         "map_name": "Consulate",
         "teammates": [
             "charles",
-            "victor",
-            "random",
-            "random"
+            "victor"
         ],
         "randoms": 2,
         "rwon": 4,
         "rlost": 2,
-        "gwon": "true",
+        "gwon": true,
         "k": 4,
         "d": 5,
         "a": 1
@@ -113,7 +107,7 @@
         "randoms": 0,
         "rwon": 2,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 5,
         "d": 5,
         "a": 1
@@ -130,7 +124,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 5,
-        "gwon": "false",
+        "gwon": false,
         "k": 4,
         "d": 7,
         "a": 2
@@ -147,7 +141,7 @@
         "randoms": 0,
         "rwon": 2,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 3,
         "d": 4,
         "a": 0
@@ -157,14 +151,12 @@
         "map_name": "Skyscraper",
         "teammates": [
             "charles",
-            "victor",
-            "random",
-            "random"
+            "victor"
         ],
         "randoms": 2,
         "rwon": 4,
         "rlost": 5,
-        "gwon": "false",
+        "gwon": false,
         "k": 2,
         "d": 8,
         "a": 1
@@ -181,7 +173,7 @@
         "randoms": 0,
         "rwon": 1,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 3,
         "d": 4,
         "a": 0
@@ -198,7 +190,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 5,
-        "gwon": "false",
+        "gwon": false,
         "k": 4,
         "d": 7,
         "a": 2
@@ -215,7 +207,7 @@
         "randoms": 0,
         "rwon": 2,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 0,
         "d": 5,
         "a": 3
@@ -232,7 +224,7 @@
         "randoms": 0,
         "rwon": 1,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 2,
         "d": 5,
         "a": 0
@@ -249,7 +241,7 @@
         "randoms": 0,
         "rwon": 1,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 3,
         "d": 4,
         "a": 1
@@ -260,13 +252,12 @@
         "teammates": [
             "charles",
             "lu",
-            "victor",
-            "random"
+            "victor"
         ],
         "randoms": 1,
         "rwon": 5,
         "rlost": 4,
-        "gwon": "true",
+        "gwon": true,
         "k": 7,
         "d": 7,
         "a": 0
@@ -283,7 +274,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 1,
-        "gwon": "true",
+        "gwon": true,
         "k": 2,
         "d": 4,
         "a": 1
@@ -300,7 +291,7 @@
         "randoms": 0,
         "rwon": 3,
         "rlost": 5,
-        "gwon": "false",
+        "gwon": false,
         "k": 1,
         "d": 8,
         "a": 1
@@ -317,7 +308,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 1,
-        "gwon": "true",
+        "gwon": true,
         "k": 5,
         "d": 2,
         "a": 1
@@ -334,7 +325,7 @@
         "randoms": 0,
         "rwon": 1,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 1,
         "d": 5,
         "a": 0
@@ -351,7 +342,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 1,
-        "gwon": "true",
+        "gwon": true,
         "k": 4,
         "d": 4,
         "a": 0
@@ -368,7 +359,7 @@
         "randoms": 0,
         "rwon": 1,
         "rlost": 4,
-        "gwon": "false",
+        "gwon": false,
         "k": 2,
         "d": 5,
         "a": 1
@@ -385,7 +376,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 1,
-        "gwon": "true",
+        "gwon": true,
         "k": 2,
         "d": 3,
         "a": 1
@@ -402,7 +393,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 0,
-        "gwon": "true",
+        "gwon": true,
         "k": 3,
         "d": 1,
         "a": 0
@@ -419,7 +410,7 @@
         "randoms": 0,
         "rwon": 4,
         "rlost": 1,
-        "gwon": "true",
+        "gwon": true,
         "k": 3,
         "d": 3,
         "a": 1

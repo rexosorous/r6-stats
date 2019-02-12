@@ -2,6 +2,7 @@ import tkinter as tk
 from datetime import datetime
 import utilities as util
 import calculate as calc
+import dbhandler as db
 
 
 '''TO DO
@@ -26,57 +27,51 @@ class KDAError(Exception):
 
 
 
-FILE_NAME = 'raw_data.json'
-matches = util.load_file(FILE_NAME) if util.file_exists(FILE_NAME) else []
-
-
 def submit():
     # saves all data into a MatchData object
+    date = datetime.today().strftime('%m-%d-%Y') # string
+    map_name = map_listbox.get(map_listbox.curselection())
     teammates = []
     for teammate in team_dict: # adds all teammates to the teammate dict
         if team_dict[teammate].get():
             teammates.append(teammate)
+    while(len(teammates) != 4):
+        teammates.append('random')
+    rwon = rounds_won.get()
+    rlost = rounds_lost.get()
+    gwon = 'true' if rounds_won.get() == 5 or rounds_won.get() >= rounds_lost.get() + 2 else 'false'
+    k = kills.get()
+    d = deaths.get()
+    a = assists.get()
 
-    gwon = False
-    if rounds_won.get() == 5 or rounds_won.get() >= rounds_lost.get() + 2:
-        gwon = True
-
-    match_dict = {
-        'date': datetime.today().strftime('%m-%d-%Y'), # string
-        'map_name': map_listbox.get(map_listbox.curselection()), # string
-        'teammates': teammates, # [string]
-        'randoms': 4 - len(teammates), # int
-        'rwon': rounds_won.get(), # int
-        'rlost': rounds_lost.get(), # int
-        'gwon': gwon, # bool
-        'k': kills.get(), # int
-        'd': deaths.get(), # int
-        'a': assists.get() # int
-    }
 
     try:
-        if check(match_dict):
-            matches.append(match_dict)
-            util.write_file(FILE_NAME, matches)
-            cleanup()
+        if len(teammates) > 4:
+            raise TeammateError
+        if rwon == rlost:
+            raise RoundError
+        if k < 0 or d < 0 or a < 0:
+            raise KDAError
+
+        db.add_raw_data(date, map_name, teammates, rwon, rlost, gwon, k, d, a)
+        db.add_general_data(gwon, rwon, rlost, k, d, a)
+        db.add_map_data(map_name, gwon, rwon, rlost, k, d, a)
+        for tmate in teammates:
+            if tmate != 'random':
+                db.add_teammate_data(tmate, gwon, rwon, rlost, k, d, a)
+        db.add_random_data(teammates.count('random'), gwon, rwon, rlost, k, d, a)
+        print('submitted')
+        cleanup()
+
     except TeammateError:
-        print('teammate error')
+        print('ERROR: CHECK TEAMMATE COUNT')
     except RoundError:
-        print('round error')
+        print('ERROR: CHECK ROUND COUNT')
     except KDAError:
-        print('KDA error')
+        print('ERROR: CHECK NEG KDA')
+    except:
+        print('ERROR: OTHER')
 
-
-def check(match_dict) -> bool:    
-    if len(match_dict['teammates']) > 4:
-        raise TeammateError
-    if match_dict['randoms'] > 4:
-        raise TeammateError
-    if match_dict['rwon'] == match_dict['rlost']:
-        raise RoundError
-    if match_dict['k'] < 0 or match_dict['d'] < 0 or match_dict['a'] < 0:
-        raise KDAError
-    return True
 
 
 def cleanup():
